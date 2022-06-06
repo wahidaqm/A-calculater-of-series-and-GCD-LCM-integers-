@@ -1,0 +1,116 @@
+/******************************************************************************
+
+           This is a program to calculate 3 things 
+           1- AP & GP Series
+           2- GCD & LCM of two numbers
+           3- nTH number in Fibonacci series using recursion
+Students names: Arwa Alnmri - Leen alshammri - Maram Alanazi - Wahida Albarqi - Nouf Alsubait
+
+*******************************************************************************/
+
+#include <iostream>
+#include <math.h>
+using namespace std;
+// function to print to the user a list of choices 
+void menu()
+{ cout<<"Enter 1 to calculate AP series"<<endl;
+    cout<<" Enter 2 to calculate GP series "<<endl;
+    cout<<" Enter 3 to calculate GCD & LCM "<<endl;
+    cout<<" Enter 4 to calculate nth number (Fibonacci series) "<<endl;
+}
+// Function to find nTH term of AP series
+float termAP (float term, float difference, float number)
+{
+  return (term + (number - 1) * difference);
+}
+// Function to find sum of AP series
+float sumAP (float term, float difference, float number)
+{
+  return (number / 2 * (2 * term + (number - 1) * difference));
+}
+// Function to find nTH term of GP series
+float termGp (float term,float difference,float number)
+{return (term* pow(difference,number-1));
+}
+// Function to find sum of GP series
+float sumGP (float term, float difference, float number)
+{return term*(1-pow(difference,number))/(1-difference);
+}
+// Function to find GCD of two numbers
+int gcd ( int a,  int b)
+{
+  if (b == 0)
+    return a;
+  return gcd(b, a % b);
+}
+ 
+// Function to find LCM of two numbers
+int lcm(int a, int b)
+{
+    return (a / gcd(a, b)) * b;
+}
+// Function to find the nth Fibonacci number
+int fib(int n)
+{
+    if(n==0)
+        return 0;
+    else if(n==1)
+        return 1;
+    else
+        return fib(n-1)+fib(n-2);
+}
+int main ()
+
+    
+   {
+       
+        float a, d, n,APterm,APsum,term,Gpsum,Gpterm,r,l,c;
+        int b,callinggcd,callinglcm,num,callingfib;
+        char choice;
+        cout<<"please choose from the menu"<<endl;
+      do
+	  {
+		  menu();
+    cin>>b; // the user will choose from the menu 
+switch (b)
+{
+case 1:// if he choose the first "1" then it will calculate the term and sum of AP series 
+  cout <<
+    "Enter initial term, The common difference and Number of terms:\t";
+  cin >> a >> d >> n;// prompt the user to enter initial term, The common difference and Number of terms
+  APterm = termAP (a, d, n);// calling for the AP functions 
+  APsum = sumAP (a, d, n);
+cout<<"the n-th term of AP is:\t"<<APterm<<endl;
+cout<<"Sum of nTH term of AP is:\t"<<APsum<<endl;
+break;
+case 2:// if he choose the first "2" then it will calculate the term and sum of Gp series 
+cout<<"Enter initial term ,The common difference and Number of terms:\t";
+  cin >> a >> r >> n;// prompt the user to enter initial term, The common difference and Number of terms
+Gpterm=termGp(a,r,n);
+Gpsum=sumGP(a,r,n);
+cout<<" The nTH term of GP is:\t"<<Gpterm<<endl;
+cout<<" Sum of nTH term of GP is:\t"<<Gpsum<<endl;
+
+break;
+case 3:// if he choose the first "3" then it will calculate LCM and GCD
+cout<<"Enter two numbers\t";
+cin>>l>>c;// prompt the user to enter two numbers 
+ callinglcm = lcm (l,c);// calling the function of LCM AND GCD
+ callinggcd=gcd(l,c);
+ cout<<" The GCD of these numbers is:\t"<<callinggcd<<endl;
+ cout<<" The LCM of these numbers is:\t"<<callinglcm<<endl;
+ break;
+ case 4:// if he choose the first "4" then it will calculate nth number 
+ cout<<"Enter a number\t";
+cin>>num;
+callingfib = fib(num);// calling the function of nth number 
+cout<<" The nth number in Fibonacci series is:\t"<<callingfib<<endl;
+break;}
+
+cout	<<	"Do	you	want	to	continue	y/n?	";
+cin >> choice;
+}while (choice == 'y' || choice == 'Y');
+cout<<"thank you for using our program";
+return 0;
+
+}
